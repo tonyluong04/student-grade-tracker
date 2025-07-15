@@ -1,48 +1,53 @@
 # Student Grade Tracker
 
-This is a simple Python program that reads student grades from a CSV file, calculates average scores, determines pass/fail status, and saves the results to a new CSV file.
+This is a simple Python program that reads student grades from a CSV file, calculates their average score, determines pass or fail status, and writes the results to a new CSV file.
 
 ## Features
 
-- Reads data from `grades.csv`
+- Reads student data from a CSV file
 - Calculates average of Math, Science, and English scores
-- Determines if the student passed (average >= 60)
-- Outputs result to `results.csv` with Name, Average, and Status
+- Marks students as Pass or Fail (pass mark is 60)
+- Saves results to a new CSV file
 
 ## How to Use
 
 1. **Prepare your input file**  
    Create a file named `grades.csv` with the following format:
 
+```
+
 Name,Math,Science,English
 Alice,85,90,80
 Bob,50,60,55
 Charlie,78,82,88
 
-2. **Run the program**
+````
 
-Make sure you have Python installed. Then run:
+2. **Run the program**  
+Make sure your `grades.csv` file is in the same folder as your Python script.
 
+Then run the program:
+
+```bash
 python main.py
+````
 
+3. **Check the results**
+   A new file called `results.csv` will be created with the following format:
 
-3. **Check the output**
-
-A file named `results.csv` will be created with the following format:
-
-Name,Average,Status
-Alice,85.0,Pass
-Bob,55.0,Fail
-Charlie,82.67,Pass
-
+   ```
+   Name,Average,Status
+   Alice,85.0,Pass
+   Bob,55.0,Fail
+   Charlie,82.67,Pass
+   ```
 
 ## Requirements
 
-- Python 3.x
-- No external libraries needed (uses built-in `csv` module)
+* Python 3.x
 
-## Notes
+No external packages needed (only built-in `csv` module is used).
 
-- You can modify the input and run again to test different results.
-- This is a basic project ideal for Python beginners or as a small portfolio piece.
+## License
 
+This project is open-source and free to use for learning purposes.
