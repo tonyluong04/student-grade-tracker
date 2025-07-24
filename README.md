@@ -7,7 +7,7 @@ This is a Python program that reads student grades from a CSV file, calculates t
 - Reads student data from a CSV file
 - Calculates the average of all subject scores (e.g. Programming, Databases, Systems Analysis)
 - Determines:
-  - **Pass or Fail** (pass mark is 60)
+  - **Pass or Fail** (pass mark: 60)
   - **Grade** based on UOW scale:
     - HD: 85–100
     - D: 75–84
