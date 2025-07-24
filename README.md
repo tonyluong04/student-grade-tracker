@@ -26,15 +26,14 @@ This is a Python program that reads student grades from a CSV file, calculates t
    Alice,92,85,88
    Bob,60,58,55
    Charlie,78,82,80
-````
+   ```
 
-These are example subjects:
+   These are example subjects:
+   - **CSIT110**: Fundamental Programming
+   - **CSIT114**: System Analysis
+   - **CSIT115**: Database Management Systems
 
-* **CSIT110**: Fundamental Programming
-* **CSIT114**: System Analysis
-* **CSIT115**: Database Management Systems
-
-2. **Run the program**
+2. **Run the program**  
    Make sure your input file is in the same folder as your Python script.
 
    Run the program using the terminal:
@@ -43,7 +42,7 @@ These are example subjects:
    python main.py grades.csv results.csv
    ```
 
-3. **Check the results**
+3. **Check the results**  
    A new file (e.g. `results.csv`) will be created with the following format:
 
    ```csv
@@ -55,14 +54,9 @@ These are example subjects:
 
 ## Requirements
 
-* Python 3.x
-* No external libraries needed (uses only built-in `csv` and `argparse`)
+- Python 3.x  
+- No external libraries needed (uses only built-in `csv` and `argparse`)
 
 ## License
 
 This project is open-source and free to use for learning purposes.
-
-```
-
----
-
