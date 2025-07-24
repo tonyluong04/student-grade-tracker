@@ -1,53 +1,68 @@
 # Student Grade Tracker
 
-This is a simple Python program that reads student grades from a CSV file, calculates their average score, determines pass or fail status, and writes the results to a new CSV file.
+This is a Python program that reads student grades from a CSV file, calculates their average score, determines pass/fail status and letter grade (HD, D, C, P, F), and writes the results to a new CSV file.
 
 ## Features
 
 - Reads student data from a CSV file
-- Calculates average of Math, Science, and English scores
-- Marks students as Pass or Fail (pass mark is 60)
-- Saves results to a new CSV file
+- Calculates the average of all subject scores (e.g. Programming, Databases, Systems Analysis)
+- Determines:
+  - **Pass or Fail** (pass mark is 60)
+  - **Grade** based on UOW scale:
+    - HD: 85–100
+    - D: 75–84
+    - C: 65–74
+    - P: 50–64
+    - F: 0–49
+- Saves results to a new CSV file with name, average, grade, and pass/fail status
 
 ## How to Use
 
 1. **Prepare your input file**  
-   Create a file named `grades.csv` with the following format:
+   Create a CSV file (e.g. `grades.csv`) with the following format:
 
-```
-
-Name,Math,Science,English
-Alice,85,90,80
-Bob,50,60,55
-Charlie,78,82,88
-
+   ```csv
+   Name,CSIT110,CSIT114,CSIT115
+   Alice,92,85,88
+   Bob,60,58,55
+   Charlie,78,82,80
 ````
 
-2. **Run the program**  
-Make sure your `grades.csv` file is in the same folder as your Python script.
+These are example subjects:
 
-Then run the program:
+* **CSIT110**: Fundamental Programming
+* **CSIT114**: System Analysis
+* **CSIT115**: Database Management Systems
 
-```bash
-python main.py
-````
+2. **Run the program**
+   Make sure your input file is in the same folder as your Python script.
+
+   Run the program using the terminal:
+
+   ```bash
+   python main.py grades.csv results.csv
+   ```
 
 3. **Check the results**
-   A new file called `results.csv` will be created with the following format:
+   A new file (e.g. `results.csv`) will be created with the following format:
 
-   ```
-   Name,Average,Status
-   Alice,85.0,Pass
-   Bob,55.0,Fail
-   Charlie,82.67,Pass
+   ```csv
+   Name,Average,Grade,Status
+   Alice,88.33,HD,Pass
+   Bob,57.67,P,Pass
+   Charlie,80.0,D,Pass
    ```
 
 ## Requirements
 
 * Python 3.x
-
-No external packages needed (only built-in `csv` module is used).
+* No external libraries needed (uses only built-in `csv` and `argparse`)
 
 ## License
 
 This project is open-source and free to use for learning purposes.
+
+```
+
+---
+
