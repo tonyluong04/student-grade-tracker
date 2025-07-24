@@ -65,7 +65,6 @@ def main():
     input_file = args.input_file
     output_file = args.output_file
 
-
     # Step 1: Read student data from file
     student_data = read_grades(input_file)
 
@@ -77,7 +76,6 @@ def main():
     else:
         print("No data found.")
         return
-
 
     # Step 2: Process each student and store results
     results = []
@@ -93,7 +91,6 @@ def main():
             'Status': status
         })
     
-
     # Step 3: Write results to output file
     write_results(results, output_file)
     print("Done. Results saved to", output_file)
