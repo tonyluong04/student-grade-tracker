@@ -1,7 +1,7 @@
-# Import required module
+# Import required modules
 import csv
 import argparse
-
+import sqlite3
 
 # Read student data from a CSV file and return a list of dictionaries
 def read_grades(filename):
@@ -28,11 +28,8 @@ def calculate_average(student, subjects):
 
 # Determine if a student passed based on average score
 def is_passing(avg):
-    if avg >= 60:
-        return True
-    else:
-        return False
-    
+    return avg >= 60
+
 # Determine grade based on average
 def get_grade(avg):
     if avg >= 85:
@@ -55,46 +52,76 @@ def write_results(results, filename):
         for student in results:
             writer.writerow(student)
 
+# Save results to SQLite database
+def save_to_database(results, db_name):
+    conn = sqlite3.connect(db_name)
+    cursor = conn.cursor()
+
+    # Create table if not exists
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS student_results (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            average REAL,
+            grade TEXT,
+            status TEXT
+        )
+    ''')
+
+    # Insert each result
+    for student in results:
+        cursor.execute('''
+            INSERT INTO student_results (name, average, grade, status)
+            VALUES (?, ?, ?, ?)
+        ''', (student['Name'], student['Average'], student['Grade'], student['Status']))
+
+    conn.commit()
+    conn.close()
+
 # Main function to control program flow
 def main():
     parser = argparse.ArgumentParser(description='Process student grades.')
     parser.add_argument('input_file', help='Path to the input CSV file')
     parser.add_argument('output_file', help='Path to the output CSV file')
+    parser.add_argument('--db', default='grades.db', help='Path to the SQLite database')
     args = parser.parse_args()
 
     input_file = args.input_file
     output_file = args.output_file
+    db_file = args.db
 
     # Step 1: Read student data from file
     student_data = read_grades(input_file)
 
-
-    # Get subject names dynamically from first row
     if student_data:
         headers = student_data[0].keys()
-        subjects = [h for h in headers if h not in ['Name']]
+        subjects = [h for h in headers if h != 'Name']
     else:
         print("No data found.")
         return
 
-    # Step 2: Process each student and store results
+    # Step 2: Process data
     results = []
     for student in student_data:
         avg = calculate_average(student, subjects)
-        status = 'Pass' if is_passing(avg) else 'Fail'
         grade = get_grade(avg)
-        
+        status = 'Pass' if is_passing(avg) else 'Fail'
+
         results.append({
             'Name': student.get('Name'),
             'Average': round(avg, 2),
             'Grade': grade,
             'Status': status
         })
-    
-    # Step 3: Write results to output file
-    write_results(results, output_file)
-    print("Done. Results saved to", output_file)
 
-# Run main if this file is executed directly
+    # Step 3: Write to CSV
+    write_results(results, output_file)
+    print("Results saved to", output_file)
+
+    # Step 4: Save to database
+    save_to_database(results, db_file)
+    print("Results saved to database:", db_file)
+
+# Run main
 if __name__ == '__main__':
     main()
