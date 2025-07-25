@@ -41,6 +41,7 @@ This is a Python program that reads student grades from a CSV file, calculates t
    ```bash
    python main.py grades.csv results.csv
    ```
+(You can choose the names of the output file as you wish).
 
 3. **Check the results**  
    A new file (e.g. `results.csv`) will be created with the following format:
