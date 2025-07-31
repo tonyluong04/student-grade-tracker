@@ -62,6 +62,8 @@ This is a Python program that reads student grades from a CSV file, calculates t
    A database file named `grades.db` will also be created in the same folder.
 
    It contains a table `grades` with all student results stored.
+   <img width="2442" height="1566" alt="image" src="https://github.com/user-attachments/assets/519b14f1-b10e-4d92-904c-4a9865e32286" />
+
 
 ## Requirements
 
